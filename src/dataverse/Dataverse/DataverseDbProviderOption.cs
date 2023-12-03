@@ -14,7 +14,7 @@ public sealed record class DataverseDbProviderOption
         SqlRetryLogicOption? dbRetryPolicy)
     {
         ServiceUrl = serviceUrl.OrEmpty();
-        EnvironmentId = environmentId.OrEmpty();
+        EnvironmentId = environmentId.OrNullIfEmpty();
         AuthClientId = authClientId.OrNullIfEmpty();
         AuthClientSecret = authClientSecret.OrNullIfEmpty();
         DbRetryPolicy = dbRetryPolicy;
