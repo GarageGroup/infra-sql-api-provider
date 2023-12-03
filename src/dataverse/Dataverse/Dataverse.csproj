@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+    <RootNamespace>GarageGroup.Infra</RootNamespace>
+    <AssemblyName>GarageGroup.Infra.Sql.Api.Provider.Dataverse</AssemblyName>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GarageGroup.Infra.Sql.Api.Provider.Microsoft" Version="2.2.0" />
+    <PackageReference Include="PrimeFuncPack.Primitives.Strings" Version="2.0.3" />
+  </ItemGroup>
+
+</Project>

@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Test", "microsoft
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft", "microsoft\Microsoft\Microsoft.csproj", "{D4D31970-628C-4835-AF64-83C36BC78E07}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dataverse", "dataverse", "{5EB32177-239B-496E-AA47-3A59AA5264F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dataverse", "dataverse\Dataverse\Dataverse.csproj", "{B5597CC2-6635-4B6B-B215-0B9B65369361}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{D4D31970-628C-4835-AF64-83C36BC78E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4D31970-628C-4835-AF64-83C36BC78E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4D31970-628C-4835-AF64-83C36BC78E07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5597CC2-6635-4B6B-B215-0B9B65369361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5597CC2-6635-4B6B-B215-0B9B65369361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5597CC2-6635-4B6B-B215-0B9B65369361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5597CC2-6635-4B6B-B215-0B9B65369361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EA623E3E-1F63-4146-BBDF-503B1B41F198} = {1B49912B-0068-4D44-B5D6-06D999956E88}
 		{D4D31970-628C-4835-AF64-83C36BC78E07} = {1B49912B-0068-4D44-B5D6-06D999956E88}
+		{B5597CC2-6635-4B6B-B215-0B9B65369361} = {5EB32177-239B-496E-AA47-3A59AA5264F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBFE5C85-563F-4917-95A1-4501407AD8D8}

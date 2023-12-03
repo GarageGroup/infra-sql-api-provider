@@ -53,6 +53,17 @@ jobs:
     - name: Test Provider.Microsoft.Test
       run: dotnet test ./src/*/*/Microsoft.Test.csproj --no-restore  -c Release
 
+    # Provider.Dataverse
+
+    - name: Restore Provider.Dataverse
+      run: dotnet restore ./src/*/*/Dataverse.csproj
+
+    - name: Build Provider.Dataverse
+      run: dotnet build ./src/*/*/Dataverse.csproj --no-restore  -c Release
+
+    - name: Pack Provider.Dataverse
+      run: dotnet pack ./src/*/*/Dataverse.csproj --no-restore -o ~/nuget  -c Release
+
     # Push
 
     - name: Push Packages
