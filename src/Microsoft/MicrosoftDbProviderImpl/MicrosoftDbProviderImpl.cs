@@ -1,9 +1,12 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 
 namespace GarageGroup.Infra;
 
-internal sealed partial class MicrosoftDbProviderImpl : IDbProvider
+internal sealed partial class MicrosoftDbProviderImpl : IDbProvider<SqlConnection>
 {
     private static readonly ConcurrentDictionary<string, SqlRetryLogicBaseProvider> RetryProviders;
 

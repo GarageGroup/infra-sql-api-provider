@@ -1,13 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Data.Common;
 
 namespace GarageGroup.Infra;
 
 partial class MicrosoftDbProviderImpl
 {
-    public DbConnection GetDbConnection()
+    public SqlConnection GetDbConnection()
         =>
-        new SqlConnection(connectionString)
+        new(connectionString)
         {
             RetryLogicProvider = retryLogicProvider
         };

@@ -14,16 +14,16 @@ public static class MicrosoftDbProvider
 {
     private const string RetryPolicyDefaultSectionName = "DbRetryPolicy";
 
-    public static Dependency<IDbProvider> Configure(Func<IServiceProvider, MicrosoftDbProviderOption> optionResolver)
+    public static Dependency<IDbProvider<SqlConnection>> Configure(Func<IServiceProvider, MicrosoftDbProviderOption> optionResolver)
     {
         ArgumentNullException.ThrowIfNull(optionResolver);
         return Dependency.From(optionResolver).Map(CreateMicrosoftDbProvider);
     }
 
-    public static Dependency<IDbProvider> Configure(
+    public static Dependency<IDbProvider<SqlConnection>> Configure(
         string connectionStringName, string retryPolicySectionName = RetryPolicyDefaultSectionName)
     {
-        return Dependency.From(ResolveConfiguration).Map(GetOption).Map<IDbProvider>(MicrosoftDbProviderImpl.InternalCreate);
+        return Dependency.From(ResolveConfiguration).Map(GetOption).Map<IDbProvider<SqlConnection>>(MicrosoftDbProviderImpl.InternalCreate);
 
         static IConfiguration ResolveConfiguration(IServiceProvider serviceProvider)
             =>
@@ -40,7 +40,7 @@ public static class MicrosoftDbProvider
         return configuration.InnerGetSqlRetryLogicOption(sectionName ?? string.Empty);
     }
 
-    private static IDbProvider CreateMicrosoftDbProvider(MicrosoftDbProviderOption option)
+    private static IDbProvider<SqlConnection> CreateMicrosoftDbProvider(MicrosoftDbProviderOption option)
     {
         ArgumentNullException.ThrowIfNull(option);
         return MicrosoftDbProviderImpl.InternalCreate(option);
@@ -106,7 +106,7 @@ public static class MicrosoftDbProvider
         return TimeSpan.Parse(value);
     }
 
-    private static IEnumerable<int> GetInt32Collecton(this IConfigurationSection section, string key)
+    private static int[] GetInt32Collecton(this IConfigurationSection section, string key)
     {
         return section.GetSection(key).AsEnumerable().Select(GetValue).Where(IsNotEmpty).Select(int.Parse).ToArray();
 
