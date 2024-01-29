@@ -29,4 +29,8 @@ public sealed record class DataverseDbProviderOption
     public string? AuthClientSecret { get; }
 
     public SqlRetryLogicOption? DbRetryPolicy { get; }
+
+    public int? ConnectionTimeout { get; init; }
+
+    public int? CommandTimeout { get; init; }
 }

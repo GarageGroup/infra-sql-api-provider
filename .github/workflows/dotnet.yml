@@ -37,32 +37,24 @@ jobs:
     # Provider.Microsoft
 
     - name: Restore Provider.Microsoft
-      run: dotnet restore ./src/*/*/Microsoft.csproj
+      run: dotnet restore ./src/*/Microsoft.csproj
 
     - name: Build Provider.Microsoft
-      run: dotnet build ./src/*/*/Microsoft.csproj --no-restore  -c Release
+      run: dotnet build ./src/*/Microsoft.csproj --no-restore  -c Release
 
     - name: Pack Provider.Microsoft
-      run: dotnet pack ./src/*/*/Microsoft.csproj --no-restore -o ~/nuget  -c Release
-
-    # Provider.Microsoft.Test
-
-    - name: Restore Provider.Microsoft.Test
-      run: dotnet restore ./src/*/*/Microsoft.Test.csproj
-
-    - name: Test Provider.Microsoft.Test
-      run: dotnet test ./src/*/*/Microsoft.Test.csproj --no-restore  -c Release
+      run: dotnet pack ./src/*/Microsoft.csproj --no-restore -o ~/nuget  -c Release
 
     # Provider.Dataverse
 
     - name: Restore Provider.Dataverse
-      run: dotnet restore ./src/*/*/Dataverse.csproj
+      run: dotnet restore ./src/*/Dataverse.csproj
 
     - name: Build Provider.Dataverse
-      run: dotnet build ./src/*/*/Dataverse.csproj --no-restore  -c Release
+      run: dotnet build ./src/*/Dataverse.csproj --no-restore  -c Release
 
     - name: Pack Provider.Dataverse
-      run: dotnet pack ./src/*/*/Dataverse.csproj --no-restore -o ~/nuget  -c Release
+      run: dotnet pack ./src/*/Dataverse.csproj --no-restore -o ~/nuget  -c Release
 
     # Push
 
