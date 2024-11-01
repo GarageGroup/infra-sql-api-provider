@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using PrimeFuncPack;
-
-[assembly: InternalsVisibleTo("GarageGroup.Infra.Sql.Api.Provider.Microsoft.Test")]
 
 namespace GarageGroup.Infra;
 

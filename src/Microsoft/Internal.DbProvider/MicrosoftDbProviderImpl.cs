@@ -1,7 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 
 namespace GarageGroup.Infra;
