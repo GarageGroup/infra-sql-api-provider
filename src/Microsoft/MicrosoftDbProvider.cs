@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using Azure.Core;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using PrimeFuncPack;
-
-[assembly: InternalsVisibleTo("GarageGroup.Infra.Sql.Api.Provider.Microsoft.Test")]
 
 namespace GarageGroup.Infra;
 
@@ -17,21 +15,29 @@ public static class MicrosoftDbProvider
     public static Dependency<IDbProvider<SqlConnection>> Configure(Func<IServiceProvider, MicrosoftDbProviderOption> optionResolver)
     {
         ArgumentNullException.ThrowIfNull(optionResolver);
-        return Dependency.From(optionResolver).Map(CreateMicrosoftDbProvider);
+        return Dependency.From<IDbProvider<SqlConnection>>(ResolveMicrosoftDbProvider);
+
+        MicrosoftDbProviderImpl ResolveMicrosoftDbProvider(IServiceProvider serviceProvider)
+        {
+            ArgumentNullException.ThrowIfNull(serviceProvider);
+            return InnerResolveDbProvider(serviceProvider, optionResolver.Invoke(serviceProvider));
+        }
     }
 
     public static Dependency<IDbProvider<SqlConnection>> Configure(
         string connectionStringName, string retryPolicySectionName = RetryPolicyDefaultSectionName)
     {
-        return Dependency.From(ResolveConfiguration).Map(GetOption).Map<IDbProvider<SqlConnection>>(MicrosoftDbProviderImpl.InternalCreate);
+        return Dependency.From<IDbProvider<SqlConnection>>(InnerResolve);
 
-        static IConfiguration ResolveConfiguration(IServiceProvider serviceProvider)
-            =>
-            serviceProvider.GetServiceOrThrow<IConfiguration>();
+        MicrosoftDbProviderImpl InnerResolve(IServiceProvider serviceProvider)
+        {
+            ArgumentNullException.ThrowIfNull(serviceProvider);
 
-        MicrosoftDbProviderOption GetOption(IConfiguration configuration)
-            =>
-            configuration.GetMicrosoftDbProviderOption(connectionStringName, retryPolicySectionName);
+            var option = serviceProvider.GetServiceOrThrow<IConfiguration>().GetMicrosoftDbProviderOption(
+                connectionStringName, retryPolicySectionName);
+
+            return InnerResolveDbProvider(serviceProvider, option);
+        }
     }
 
     public static SqlRetryLogicOption? GetSqlRetryLogicOption(this IConfiguration configuration, string sectionName)
@@ -40,11 +46,15 @@ public static class MicrosoftDbProvider
         return configuration.InnerGetSqlRetryLogicOption(sectionName ?? string.Empty);
     }
 
-    private static IDbProvider<SqlConnection> CreateMicrosoftDbProvider(MicrosoftDbProviderOption option)
-    {
-        ArgumentNullException.ThrowIfNull(option);
-        return MicrosoftDbProviderImpl.InternalCreate(option);
-    }
+    private static MicrosoftDbProviderImpl InnerResolveDbProvider(IServiceProvider serviceProvider, MicrosoftDbProviderOption option)
+        =>
+        MicrosoftDbProviderImpl.InternalCreate(
+            option: option,
+            tokenCredential: new SqlConnectionStringBuilder(option.ConnectionString).Authentication switch
+            {
+                SqlAuthenticationMethod.NotSpecified => serviceProvider.GetServiceOrAbsent<TokenCredential>().OrDefault(),
+                _ => null
+            });
 
     private static MicrosoftDbProviderOption GetMicrosoftDbProviderOption(
         this IConfiguration configuration, string connectionStringName, string? retryPolicySectionName)
