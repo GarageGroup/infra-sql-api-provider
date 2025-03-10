@@ -54,6 +54,17 @@ jobs:
     - name: Pack Provider.Dataverse
       run: dotnet pack ./src/*/Dataverse.csproj --no-restore -o ~/nuget  -c Release
 
+    # Provider.Postgres
+
+    - name: Restore Provider.Postgres
+      run: dotnet restore ./src/*/Postgres.csproj
+
+    - name: Build Provider.Postgres
+      run: dotnet build ./src/*/Postgres.csproj --no-restore  -c Release
+
+    - name: Pack Provider.Postgres
+      run: dotnet pack ./src/*/Postgres.csproj --no-restore -o ~/nuget  -c Release
+
     # Push
 
     - name: Push Packages

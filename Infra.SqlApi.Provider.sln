@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dataverse", "src\Dataverse\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft", "src\Microsoft\Microsoft.csproj", "{CE881E76-21A2-4FAE-8B4D-B50EF8EE2F96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postgres", "src\Postgres\Postgres.csproj", "{1A8278B9-4998-49BC-A456-4161E80FF681}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +23,13 @@ Global
 		{CE881E76-21A2-4FAE-8B4D-B50EF8EE2F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE881E76-21A2-4FAE-8B4D-B50EF8EE2F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE881E76-21A2-4FAE-8B4D-B50EF8EE2F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8278B9-4998-49BC-A456-4161E80FF681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8278B9-4998-49BC-A456-4161E80FF681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8278B9-4998-49BC-A456-4161E80FF681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8278B9-4998-49BC-A456-4161E80FF681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB62878A-63EB-4C41-A47B-2349091A1E0C}

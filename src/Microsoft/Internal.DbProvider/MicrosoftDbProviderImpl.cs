@@ -41,4 +41,6 @@ internal sealed partial class MicrosoftDbProviderImpl : IDbProvider<SqlConnectio
         this.retryLogicProvider = retryLogicProvider;
         this.tokenCredential = tokenCredential;
     }
+
+    public SqlDialect Dialect { get; } = SqlDialect.TransactSql;
 }
