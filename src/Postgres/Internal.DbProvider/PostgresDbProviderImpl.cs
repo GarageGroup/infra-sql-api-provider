@@ -9,4 +9,6 @@ internal sealed partial class PostgresDbProviderImpl : IDbProvider<NpgsqlConnect
     internal PostgresDbProviderImpl(PostgresDbProviderOption option)
         =>
         this.option = option;
+
+    public SqlDialect Dialect { get; } = SqlDialect.PostgreSql;
 }
