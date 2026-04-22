@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/dotnet.yml" />
+  </Folder>
+  <Project Path="src/Dataverse/Dataverse.csproj" />
+  <Project Path="src/Microsoft/Microsoft.csproj" />
+  <Project Path="src/Microsoft.Test/Microsoft.Test.csproj" />
+  <Project Path="src/Postgres/Postgres.csproj" />
+</Solution>
